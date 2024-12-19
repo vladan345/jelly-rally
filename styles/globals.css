@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: MatterBold;
+  src: url("../public/fonts/Matter-Bold.otf");
+}
+@font-face {
+  font-family: MatterLight;
+  src: url("../public/fonts/Matter-Light.otf");
+}
+@font-face {
+  font-family: MatterRegular;
+  src: url("../public/fonts/Matter-Regular.otf");
+}
+@layer base {
+  :root {
+    --content-width: 1340px;
+    --text: #232323;
+    --background: #f5f5f5;
+    --radius: 6px;
+    --accent: #008cff;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+::-webkit-scrollbar {
+  background: var(--background);
+  width: 6px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text);
+  border-radius: 6px;
+}
+body {
+  background: var(--background);
+}
+h1 {
+  font-size: 42px;
+  font-family: MatterBold;
+}
+h2 {
+  font-size: 32px;
+  font-family: MatterBold;
+}
+h3 {
+  font-size: 26px;
+  font-family: MatterBold;
+}
+h4 {
+  font-size: 22px;
+  font-family: MatterBold;
+}
+h5 {
+  font-size: 20px;
+  font-family: MatterBold;
+}
+h6 {
+  font-size: 18px;
+  font-family: MatterBold;
+}
+p,
+li,
+a {
+  font-size: 18px;
+  font-family: MatterRegular;
+}
+button:disabled,
+button:disabled:hover {
+  border-color: lightgrey;
+  color: lightgrey;
+  cursor: not-allowed;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+.wrapper {
+  width: 100%;
+  max-width: var(--content-width);
+  height: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.logo img {
+  max-height: 60px;
+  width: auto;
+}
+.underline-link,
+.link,
+input {
+  font-size: 18px;
+  font-family: MatterRegular;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  margin-bottom: -4px;
+}
+.underline-link:after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  transition: all 0.3s;
+  background: var(--text);
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+.underline-link:hover:after {
+  width: 100%;
+}
+nav .bag-icon {
+  position: relative;
+}
+nav .bag-icon:after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  transition: all 0.3s;
+  background: var(--text);
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+nav .bag-icon:hover:after {
+  width: 100%;
+}
+
+.fallback {
+  background: #e1e1e1;
+  animation: skeleton 1.5s infinite ease-in-out;
+  background: linear-gradient(
+    135deg,
+    rgba(225, 225, 225, 1) 0%,
+    rgba(225, 225, 225, 1) 30%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(225, 225, 225, 1) 70%,
+    rgba(225, 225, 225, 1) 100%
+  );
+  background-size: 300% 300%;
+  background-position: 100% 100%;
+  background-repeat: repeat;
+}
+@keyframes skeleton {
+  from {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
