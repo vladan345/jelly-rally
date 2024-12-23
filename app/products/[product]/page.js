@@ -1,13 +1,12 @@
-import { getProduct } from "@/utils/shopify";
+import { getProduct } from "@/utils/fetch";
 import ProductDetails from "@/components/ProductDetails";
-import DevTools from "@/components/DevTools";
 
 export default async function Page({ params }) {
-   const productData = await getProduct(params.product);
+   const productParams = await params;
+   const productData = await getProduct(productParams.product);
    return (
       <div className="ProductPage tablet:py-40 py-28">
          <ProductDetails productData={productData} />
-         <DevTools />
       </div>
    );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { tags } from "@/utils/constants";
 
 function ProductCard({ product }) {
    return (
@@ -7,6 +8,17 @@ function ProductCard({ product }) {
          href={`/products/${product.handle}`}
          className={`bg-transparent rounded-[--radius] border-2 border-[--text] transition duration-500 hover:border-[--accent] hover:text-[--accent] flex flex-col justify-between w-full`}
       >
+         <div className="flex gap-4 mt-4 ml-4">
+            {product.tags.map((tag, index) => (
+               <span
+                  className={`py-1 px-2 rounded-full capitalize text-white text-sm`}
+                  key={index}
+                  style={{ backgroundColor: tags[tag] }}
+               >
+                  {tag}
+               </span>
+            ))}
+         </div>
          <div className={`h-[300px] relative min-h-[300px]`}>
             {product.images.edges[0] ? (
                <Image

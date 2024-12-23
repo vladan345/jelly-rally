@@ -8,7 +8,6 @@ export default function Page() {
    const { checkoutUrl, cartItems } = useContext(CartContext);
 
    let cartTotal = 0;
-   let shippingPlaceholder = 300;
 
    return (
       <>
@@ -39,18 +38,10 @@ export default function Page() {
                   </div>
                   {cartItems.length != 0 && (
                      <div className="tablet:w-3/6 laptop:w-2/6 w-full mt-8 sticky top-[109px] right-0 h-[350px]">
-                        <div className="border-2 border-black rounded-[--radius] p-8 flex flex-col justify-between h-[263px]">
-                           <div className="flex justify-between items-center">
-                              <h3>Cart Total</h3>
-                              <p>{cartTotal}.0 RSD</p>
-                           </div>
-                           <div className="flex  justify-between items-center">
-                              <h3>Shipping</h3>
-                              <p>{shippingPlaceholder}.0 RSD</p>
-                           </div>
+                        <div className="border-2 border-black rounded-[--radius] p-8 flex flex-col justify-between gap-4">
                            <div className="flex justify-between items-center">
                               <h3>Total</h3>
-                              <p>{cartTotal + shippingPlaceholder}.0 RSD</p>
+                              <p>{cartTotal}.0 SEK</p>
                            </div>
                         </div>
                         <Link

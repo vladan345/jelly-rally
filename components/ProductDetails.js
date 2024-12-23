@@ -24,6 +24,8 @@ function ProductDetails({ productData }) {
          price: variant.node.price,
          quantity: quantity,
          currencyCode: variant.node.price.currencyCode,
+         weight: variant.node.weight,
+         weightUnit: variant.node.weightUnit,
       };
    });
 
@@ -68,23 +70,19 @@ function ProductDetails({ productData }) {
             ...selectedVariant,
             quantity: isInc ? quantity + 1 : quantity - 1,
          });
-         console.log({
-            ...selectedVariant,
-            quantity: isInc ? quantity + 1 : quantity - 1,
-         });
       }
    };
 
    return (
       <div className="ProductDetails">
-         <div className="wrapper flex tablet:flex-row flex-col">
+         <div className="wrapper flex tablet:flex-row flex-col gap-10">
             {productData.featuredImage ? (
                <Image
                   src={productData.featuredImage.url}
                   alt={productData.featuredImage.altText}
                   width={600}
                   height={600}
-                  className="tablet:w-1/2 w-full mb-8 h-auto object-contain"
+                  className="tablet:w-1/2 w-full mb-8 h-auto object-contain rounded-xl border-2 border-black"
                   priority
                />
             ) : (
@@ -93,13 +91,17 @@ function ProductDetails({ productData }) {
                   src="/images/placeholder.svg"
                   width={600}
                   height={600}
-                  className="tablet:w-1/2 w-full mb-8 h-auto object-contain"
+                  className="tablet:w-1/2 w-full mb-8 h-auto object-contain rounded-xl border-2 border-black"
                   priority
                />
             )}
 
             <div className="details tablet:w-1/2 w-full">
                <h1>{productData.title}</h1>
+               <p className="text-2xl my-4">
+                  <span>{selectedVariant.weight}</span>{" "}
+                  {selectedVariant.weightUnit == "OUNCES" ? "oz" : "g"}
+               </p>
                <p>{productData.descripotion}</p>
 
                <div className="my-10 flex gap-10 flex-col">
@@ -135,6 +137,13 @@ function ProductDetails({ productData }) {
                            );
                         }
                      })}
+                  <div className="flex flex-col gap-2">
+                     {productData.tags.map((tag, index) => (
+                        <div key={index} className="capitalize">
+                           {tag}
+                        </div>
+                     ))}
+                  </div>
                   <div className="flex items-center gap-4">
                      <div className="inline-flex items-center border-2 border-[--black] rounded-[--radius] hover:border-[--accent] hover:text-[--accent] transition duration-500 min-w-[55px] h-[55px] px-4">
                         <Image

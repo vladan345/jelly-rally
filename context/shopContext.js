@@ -1,11 +1,6 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
-import {
-   generateNewCart,
-   updateCheckout,
-   cartAddItem,
-   cartRemoveItem,
-} from "@/utils/shopify";
+import { generateNewCart, cartAddItem, cartRemoveItem } from "@/utils/cart";
 
 const CartContext = createContext();
 
