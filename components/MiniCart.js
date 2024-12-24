@@ -56,7 +56,11 @@ function MiniCart({ type }) {
                                     {image ? (
                                        <Image
                                           src={image.url}
-                                          alt={image.altText}
+                                          alt={
+                                             image.altText
+                                                ? image.altText
+                                                : "Product image"
+                                          }
                                           width={70}
                                           height={70}
                                        />

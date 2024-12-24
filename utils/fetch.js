@@ -1,4 +1,4 @@
-import { ShopifyData } from "./shopify";
+import { ShopifyAdminData, ShopifyData } from "./shopify";
 
 export async function getAllProductTags() {
    const query = `

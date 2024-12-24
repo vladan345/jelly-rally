@@ -9,7 +9,7 @@ function CartProduct({ item }) {
    const { removeCartItem } = useContext(CartContext);
 
    return (
-      <div className="CartProduct my-8">
+      <div className="CartProduct my-8 bg-white">
          <div className="relative flex flex-col laptop:flex-row py-8 border-2 border-black rounded-[--radius]">
             <Image
                className="cursor-pointer hover:opacity-20 transition duration-500 absolute right-4 top-4"
@@ -23,7 +23,11 @@ function CartProduct({ item }) {
                {images.length != 0 ? (
                   <Image
                      src={images[0].node.url}
-                     alt={images[0].node.altText}
+                     alt={
+                        images[0].node.altText
+                           ? images[0].node.altText
+                           : "Product image"
+                     }
                      fill
                      className="object-contain"
                      priority

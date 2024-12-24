@@ -2,8 +2,11 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import Image from "next/image";
 import { CartContext } from "context/shopContext";
+import { tags } from "@/utils/constants";
+import Link from "next/link";
 
 function ProductDetails({ productData }) {
+   console.log(productData);
    const { addToCart } = useContext(CartContext);
    const [quantity, setQuantity] = useState(1);
    const allVariantOptions = productData.variants.edges?.map((variant) => {
@@ -79,7 +82,11 @@ function ProductDetails({ productData }) {
             {productData.featuredImage ? (
                <Image
                   src={productData.featuredImage.url}
-                  alt={productData.featuredImage.altText}
+                  alt={
+                     productData.featuredImage.altText
+                        ? productData.featuredImage.altText
+                        : "Product image"
+                  }
                   width={600}
                   height={600}
                   className="tablet:w-1/2 w-full mb-8 h-auto object-contain rounded-xl border-2 border-black"
@@ -102,7 +109,7 @@ function ProductDetails({ productData }) {
                   <span>{selectedVariant.weight}</span>{" "}
                   {selectedVariant.weightUnit == "OUNCES" ? "oz" : "g"}
                </p>
-               <p>{productData.descripotion}</p>
+               <p className="text-lg">{productData.description}</p>
 
                <div className="my-10 flex gap-10 flex-col">
                   {productData.options &&
@@ -137,11 +144,21 @@ function ProductDetails({ productData }) {
                            );
                         }
                      })}
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 items-start">
                      {productData.tags.map((tag, index) => (
-                        <div key={index} className="capitalize">
+                        <Link
+                           href={`/products?tag=${tag
+                              .toLowerCase()
+                              .replace(" ", "-")}`}
+                           key={index}
+                           className="capitalize text-white px-2 rounded-full hover:opacity-70 transition-all duration-500"
+                           style={{
+                              backgroundColor:
+                                 tag === tag.toLowerCase() ? tags[tag] : "",
+                           }}
+                        >
                            {tag}
-                        </div>
+                        </Link>
                      ))}
                   </div>
                   <div className="flex items-center gap-4">

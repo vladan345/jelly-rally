@@ -6,9 +6,9 @@ function ProductCard({ product }) {
    return (
       <Link
          href={`/products/${product.handle}`}
-         className={`bg-transparent rounded-[--radius] border-2 border-[--text] transition duration-500 hover:border-[--accent] hover:text-[--accent] flex flex-col justify-between w-full`}
+         className={`bg-transparent rounded-[--radius] border-2 border-[--text] transition duration-500 hover:border-[--accent] hover:text-[--accent] flex flex-col justify-between w-full bg-white`}
       >
-         <div className="flex gap-4 mt-4 ml-4">
+         <div className="flex gap-2 mt-4 ml-4 flex-wrap">
             {product.tags.map((tag, index) => (
                <span
                   className={`py-1 px-2 rounded-full capitalize text-white text-sm`}
@@ -26,7 +26,11 @@ function ProductCard({ product }) {
                   sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               25vw"
-                  alt={product.images.edges[0].node.altText}
+                  alt={
+                     product.images.edges[0].node.altText
+                        ? product.images.edges[0].node.altText
+                        : "Product image"
+                  }
                   src={product.images.edges[0].node.url}
                   priority
                   className="object-contain"
